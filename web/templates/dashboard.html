@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Runs - Red-Team Harness{% endblock %}
+{% block terminal_cmd %}./dashboard --list-runs{% endblock %}
+
+{% block content %}
+  <h1>Eval Runs</h1>
+  <div class="subtitle">Every past run of the harness, most recent first.</div>
+
+  {% if not summaries %}
+    <div class="empty-state">
+      No runs yet.<br><br>
+      Start one from the project root with:<br><br>
+      <code>python cli.py run</code>
+    </div>
+  {% else %}
+    {% for s in summaries %}
+      {% set rate = s.pass_rate %}
+      {% set bar_color = 'var(--pass)' if rate >= 80 else ('var(--accent)' if rate >= 50 else 'var(--fail)') %}
+      <a class="run-card" href="{{ url_for('run_detail', run_id=s.run.id) }}">
+        <div class="run-card-top">
+          <span class="run-model">{{ s.run.model_name }}</span>
+          <span class="run-time">{{ s.run.started_at.strftime('%Y-%m-%d %H:%M UTC') }}</span>
+        </div>
+        <div class="pass-rate-row">
+          <div class="bar-track">
+            <div class="bar-fill" style="width: {{ rate }}%; background: {{ bar_color }};"></div>
+          </div>
+          <span class="pass-pct" style="color: {{ bar_color }};">{{ s.passed }}/{{ s.total }} ({{ rate }}%)</span>
+        </div>
+      </a>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

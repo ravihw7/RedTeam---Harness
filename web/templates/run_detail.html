@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Run #{{ run.id }} - Red-Team Harness{% endblock %}
+{% block terminal_cmd %}./dashboard --run {{ run.id }}{% endblock %}
+
+{% block content %}
+  <a class="back-link" href="{{ url_for('dashboard') }}">&larr; all runs</a>
+
+  <h1>Run #{{ run.id }} &middot; {{ run.model_name }}</h1>
+  <div class="subtitle">
+    Started {{ run.started_at.strftime('%Y-%m-%d %H:%M UTC') }}
+    &middot; {{ summary.passed }}/{{ summary.total }} passed ({{ summary.pass_rate }}%)
+  </div>
+
+  <div class="category-grid">
+    {% for cat in categories %}
+      {% set rate = cat.pass_rate %}
+      {% set color = 'var(--pass)' if rate >= 80 else ('var(--accent)' if rate >= 50 else 'var(--fail)') %}
+      <div class="category-chip">
+        <div class="category-chip-name">{{ cat.name.replace('_', ' ') }}</div>
+        <div class="category-chip-rate" style="color: {{ color }};">{{ cat.passed }}/{{ cat.total }}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% for cat in categories %}
+    <div class="category-section">
+      <div class="category-title">{{ cat.name.replace('_', ' ') | capitalize }}</div>
+
+      {% for r in cat.results %}
+        <div class="result-row" data-passed="{{ r.passed | lower }}">
+          <details>
+            <summary class="result-summary">
+              <span class="status-dot {{ 'pass' if r.passed else 'fail' }}"></span>
+              <span class="severity-chip {{ r.test_case.severity }}">{{ r.test_case.severity }}</span>
+              <span class="prompt-preview">{{ r.test_case.prompt }}</span>
+            </summary>
+            <div class="result-body">
+              <div class="result-block">
+                <div class="result-block-label">Prompt</div>
+                <div class="result-block-content">{{ r.test_case.prompt }}</div>
+              </div>
+              <div class="result-block">
+                <div class="result-block-label">Target response</div>
+                <div class="result-block-content">{{ r.response_text }}</div>
+              </div>
+              <div class="result-block">
+                <div class="result-block-label">Judge rationale &middot; {{ r.latency_ms }}ms</div>
+                <div class="result-block-content">{{ r.judge_rationale }}</div>
+              </div>
+            </div>
+          </details>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+{% endblock %}
