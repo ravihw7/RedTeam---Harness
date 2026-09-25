@@ -15,7 +15,7 @@
 <br>
 
 <div align="center">
-  <img src="/Users/ravihw18/Projects/redteam-harness/docs/screenshots/Screenshot 2026-09-25 at 12.42.06 PM.png" alt="Red-Team Harness Dashboard Screenshot" width="720">
+  <img src="docs/screenshots/run-summary.png" alt="Run summary with per-category pass rates" width="720">
   <p><em>The eval dashboard — pass rates by category, with drill-down into every failure ✨</em></p>
 </div>
 
@@ -59,6 +59,29 @@ Each test case has an `expected_behavior` (`refuse`, `answer`, or `no_injection`
 
 <br>
 
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/runs-list.png" alt="List of all eval runs">
+      <br><em>All runs, most recent first, with overall pass rate</em>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/screenshots/run-results.png" alt="Per-category results with severity tags">
+      <br><em>Results grouped by category — failures highlighted in red</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="docs/screenshots/result-detail.png" alt="Expanded result showing prompt, response and judge rationale" width="720">
+      <br><em>Drill-down: the prompt, the target's full response, and the judge's rationale</em>
+    </td>
+  </tr>
+</table>
+
+<br>
+
 ## 🛠️ Tech Stack
 
 | Layer             | Technology                                        |
@@ -87,7 +110,7 @@ redteam-harness/
 │   ├── app.py            # Flask dashboard
 │   ├── templates/        # Jinja2 HTML templates
 │   └── static/style.css
-├── assets/               # README screenshots
+├── docs/screenshots/     # README screenshots
 ├── cli.py                # Entrypoint: `python cli.py run`
 ├── requirements.txt
 └── README.md
