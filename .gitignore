@@ -1,0 +1,42 @@
+# Secrets (keep .env.example so others know which variables to set)
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Python bytecode / build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Test / lint / type-check caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Flask instance folder
+instance/
+
+# SQLite database (harness.db by default, see harness/db.py) - local run data
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
