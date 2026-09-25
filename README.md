@@ -1,5 +1,7 @@
 # LLM Red-Team & Eval Harness
 
+![Run detail — per-category pass rates for Run #1](docs/screenshots/Screenshot%202026-09-25%20at%2012.42.06%E2%80%AFPM.png)
+
 A small harness for running structured safety/eval test suites against a
 target Claude model, scoring the results with an LLM-as-judge, and reviewing
 outcomes in a dashboard. Built as a portfolio project for AI evaluation /
@@ -83,17 +85,21 @@ rationale.
 
 ## Screenshots
 
-**Dashboard** — pass rates by category
+**Eval runs list**: every past run with its overall pass rate
 
-![Dashboard](docs/screenshots/dashboard.png)
+![Eval runs list](docs/screenshots/Screenshot%202026-09-25%20at%2012.41.54%E2%80%AFPM.png)
 
-**Run detail** — per-test results for a single run
+**Run detail**: per-category scores and each test case with its severity
 
-![Run detail](docs/screenshots/run_detail.png)
+![Run detail](docs/screenshots/Screenshot%202026-09-25%20at%2012.42.06%E2%80%AFPM.png)
 
-**Failure drill-down** — prompt, target response, and judge rationale
+**Run detail (continued)**: jailbreak, over-refusal and prompt-injection cases, with the failed test marked in red
 
-![Failure detail](docs/screenshots/failure_detail.png)
+![Run detail continued](docs/screenshots/Screenshot%202026-09-25%20at%2012.42.10%E2%80%AFPM.png)
+
+**Failure drill-down**: prompt, target response, and judge rationale
+
+![Result drill-down](docs/screenshots/Screenshot%202026-09-25%20at%2012.42.34%E2%80%AFPM.png)
 
 ## Why a separate judge model matters
 
