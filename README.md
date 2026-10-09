@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ LLM Red-Team & Eval Harness 
+# 🛡️ LLM Red-Team & Eval Harness  
 
 ### *Stress-testing language models with jailbreaks, injections & trick questions — graded by an LLM judge*
 
